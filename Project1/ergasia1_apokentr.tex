@@ -1,0 +1,40 @@
+\documentclass[10pt]{report}
+\usepackage[utf8]{inputenc}
+\usepackage[greek]{babel}
+\usepackage{listings}
+\newcommand{\en}{\selectlanguage{english}}
+\newcommand{\gr}{\selectlanguage{greek}}
+\usepackage{fancyhdr}
+\pagestyle{plain}
+\fancyhf{}
+\fancyhead[R]{\leftmark \gr ΛΕΚΚΑΣ ΓΕΩΡΓΙΟΣ ΑΜ:1067430}
+\fancyhead[LO]{\rightmark }
+\fancypagestyle{plain}{}
+\usepackage{graphicx}
+
+\title{\textbf{1o  {\en PROJECT} ΑΠΟΚΕΝΤΡΩΜΕΝΟΣ ΥΠΟΛΟΓΙΣΜΟΣ \& ΜΟΝΤΕΛΟΠΟΙΗΣΗ}}
+\author{\gr ΛΕΚΚΑΣ ΓΕΩΡΓΙΟΣ ΑΜ:1067430  Έτος 5ο\newline}
+\date{}
+\cfoot{\thepage}
+\begin{document}
+	\maketitle	
+	\thispagestyle{fancy}
+	\tableofcontents
+	\pagestyle{plain}
+	\begin{itemize}
+		\item[A.] \gr Άσκηση 1 
+		\item[Β.] \gr Άσκηση 2
+		
+	\end{itemize}
+	\pagebreak
+	
+	\section*{\gr Α. Άσκηση 1}
+	
+	\gr Γνωρίζουμε πως σε ένα {\en Randomized} αλγόριθμο υπάρχουν τέσσερις πιθανές ιδιότητες που μπορεί να έχει ένας κόμβος.Μπορεί 1) να είναι {\en Running}, δηλαδή να μην έχει σταθεροποιηθεί το χρώμα του, 2) να είναι {\en Stopped}, δηλαδή να έχει κάποιο χρώμα, 3) να είναι ενεργός, δηλαδή αυτό το γύρο θα προσπαθήσει να βρει χρώμα και 4) να είναι ανενεργός.
+	
+	\par \gr Στο πρώτο ερώτημα της άσκησης επιθυμούμε ο κόμβος να ενεργοποιείται με πιθανότητα {\en p{\scriptsize a}}. Συνεπώς η ανάλυση η ανάλυση για αυτόν τον αλγόριθμο όταν η πιθανότητα ενεργοποίησης είναι {\en p{\scriptsize a}} είναι η ακόλουθη:\\ \\
+	Έστω ότι έχουμε ένα κόμβο {\en u} ο οποίος είναι {\en running} και έχει ως γείτονες {\en k running} κόμβους {\en v}.\\ Τώρα ας υποθέσουμε πως ο {\en u} είναι ενεργός και έχει τουλάχιστον {\en k}+1 διαθέσιμα χρώματα. Τότε {\en A{\scriptsize ri}} είναι η πιθανότητα ο {\en u} να συγκρουστεί με τον {\en v{\scriptsize i}}: 1/{\en k}+1. Δηλαδή {\en P{\scriptsize r}}({\en A{\scriptsize ri}}) $\leq$1/{\en k}+1 (Φράζουμε διότι μπορεί να έχω παραπάνω χρώματα).Άμα ο {\en vi} είναι ανενεργός τότε δεν υπάρχει σύγκρουση.\\Συνεπώς ισχύει το παρακάτω :{\en P{\scriptsize r}}({\en A{\scriptsize ri}}/{\scriptsize {\en vi} ενεργός}) $\leq$1/{\en k}+1.
+	\\ \\
+	Άμα {\en v{\scriptsize i}} ενεργός με πιθανότητα {\en p{\scriptsize a}} τότε: {\en P{\scriptsize r}}({\en A{{\en v{\scriptsize i}}}) $\leq$p{\scriptsize a}/{\en k}+1.\gr Γενικά θέλω να υπολογίσω : {\en P{\scriptsize r}}({\en A{{\en v{\scriptsize i}}}})
+	\par \gr
+\end{document}
