@@ -1,6 +1,7 @@
 \documentclass[10pt]{report}
 \usepackage[utf8]{inputenc}
 \usepackage[greek]{babel}
+\usepackage{tikz} 
 \usepackage{listings}
 \newcommand{\en}{\selectlanguage{english}}
 \newcommand{\gr}{\selectlanguage{greek}}
@@ -31,7 +32,7 @@
 	\gr Η συγγραφή της αναφοράς πραγματοποιήθηκε με {\en Latex} με τη βοήθεια του {\en TexStudio}.\\ \\ 
 	\section*{\gr \textbf{Α. Άσκηση 1}}
 	\subsection*{\gr Ερώτημα 1}
-	\gr Γνωρίζουμε πως σε ένα {\en Randomized} αλγόριθμο υπάρχουν τέσσερις πιθανές ιδιότητες που μπορεί να έχει ένας κόμβος.Μπορεί 1) να είναι {\en Running}, δηλαδή να μην έχει σταθεροποιηθεί το χρώμα του, 2) να είναι {\en Stopped}, δηλαδή να έχει κάποιο χρώμα, 3) να είναι ενεργός, δηλαδή αυτό το γύρο θα προσπαθήσει να βρει χρώμα και 4) να είναι ανενεργός.
+	\gr Γνωρίζουμε πως σε ένα {\en Randomized} αλγόριθμο υπάρχουν τέσσερις πιθανές ιδιότητες που μπορεί να έχει ένας κόμβος.Μπορεί 1) να είναι {\en Running}, δηλαδή να μην έχει σταθεροποιηθεί το χρώμα του, 2) να είναι {\en Stopped}, δηλαδή να έχει κάποιο χρώμα, 3) να είναι ενεργός, δηλαδή αυτό το γύρο θα προσπαθήσει να βρει χρώμα και 4) να είναι ανενεργός. Επιπλέον σύκρουση κόμβων πραγματοποιείται οταν δύο γειτονικοί κόμβοι έχουν το ίδιο χρώμα(Η έννοια αυτή χρησιμοποιείται στις παρκάτω αποδείξεις).
 	
 	
 	\par \gr Στο πρώτο ερώτημα της άσκησης επιθυμούμε ο κόμβος να ενεργοποιείται με πιθανότητα {\en p{\scriptsize a}}. Συνεπώς η ανάλυση η ανάλυση για αυτόν τον αλγόριθμο όταν η πιθανότητα ενεργοποίησης είναι {\en p{\scriptsize a}} είναι η ακόλουθη:\\
@@ -43,18 +44,143 @@
 	\par Τέλος για να καταλήξω στο δεύτερο {\en Corollary} της διαφάνειας 61 του δευτερου σετ διαφανειών πρέπει αρχικα να καθορίσω το Τ=Ο($\log_{}{\en n}$).Πρέπει δηλαδή να ορίσω τις σταθερές που κρύβει το Ο.Έχουμε: Τ={\en c}$\cdot$$\log_{\frac{1}{1-{\en p{\scriptsize a}}^2}}{\en n}$. Οπότε ένας κόμβος θα σταματήσει με πιθανότητα $\leq(\frac{1}{\frac{1}{1-{\en p{\scriptsize a}}^2}})^{{\en c}\cdot\log_{\frac{1}{1-{\en p{\scriptsize a}}^2}}{\en n}}\leq(\frac{1}{1-{\en p{\scriptsize a}}^2})^{-1\cdot{\en c}\cdot\log_{\frac{1}{1-{\en p{\scriptsize a}}^2}}{\en n}}\leq{\en n}^{\en -c}$.\\
 	Aπό {\en Union Bound} έχουμε : {\en P{\scriptsize r}}(να μην έχει τελίωσει κάποιος κόμβος μετά από Τ γύρους)$\leq{\en n}\cdot{\en n}^{\en -c}={\en n}^{\en -c+1}$. Οπότε η πιθανότητα να μην έχει τερματίσει κάποιος κόμβος μετά από {\en c}$\cdot$$\log_{\frac{1}{1-{\en p{\scriptsize a}}^2}}{\en n}$ γύρους είναι το πολύ $\frac{1}{{\en n}^{\en c-1}}$. Συμπερασματικά, η πιθανότητα να τερματίσει μετά από {\en c}$\cdot$$\log_{\frac{1}{1-{\en p{\scriptsize a}}^2}}{\en n}$ γύρους είναι $\leq 1-\frac{1}{{\en n}^{\en c-1}}$ ,δηλαδή {\en w.h.p}.\\															
 																								\qed
+	\subsection*{\gr Ερώτημα 2}
+	\gr Όταν {\en p{\scriptsize a}}=1 δηλαδή όταν η παράμετρος που δηλώνει την πιθανότητα ενεργοποίησης  ενός κόμβου είναι ίση με 1, αυτό σημαίνει πως όλοι οι κόμβοι ψάχνουν να βρουν ένα διαθέσιμο χρώμα.\\
+	Από την απόδειξη του προηγούμενου ερωτήματος συνεχίζουμε από το σημείο υπολογισμού του {\en P{\scriptsize r}}({\en A{{\en v{\scriptsize i}}}}) και έχουμε: {\en P{\scriptsize r}}({\en A{{\en v{\scriptsize i}}}})$\leq\frac{1}{{\en k}+1}$.\\
+	Οπότε εφαρμόζω {\en Union Bound} και έχω: {\en P{\scriptsize r}}({\en A{{\en v{\scriptsize 1}}}}$\cup${\en A{{\en v{\scriptsize 2}}}}$\cup${\en A{{\en v{\scriptsize 3}}}}$\cup$...$\cup${\en A{{\en v{\scriptsize k}}}})$\leq$$\sum_{n=1}^{10}${\en P{\scriptsize r}}({\en A{{\en v{\scriptsize i}}}))\\$\leq$$\frac{\en k}{{\en k}+1}$$\leq$$\frac{\en k}{{\en k}}$$\leq$1.\\
+	\gr Συνεχίζοντας η πιθανότητα να μην συγκρουστούν οι δύο κόμβοι είναι:\\ {\en P{\scriptsize r}}(1/{\en A{{\en v{\scriptsize 1}}}}$\cup${\en A{{\en v{\scriptsize 2}}}}$\cup${\en A{{\en v{\scriptsize 3}}}}$\cup$...$\cup${\en A{{\en v{\scriptsize k}}}}) = 1-{\en P{\scriptsize r}}({\en A{{\en v{\scriptsize 1}}}}$\cup${\en A{{\en v{\scriptsize 2}}}}$\cup${\en A{{\en v{\scriptsize 3}}}}$\cup$...$\cup${\en A{{\en v{\scriptsize k}}}})$\geq$0(Οριακά μεγαλύτερη ή ίση του μηδενός).\\
+	Συνεπώς θα υπάρχει  σχεδόν πάντα σύγκρουση μεταξύ δύο γειτονικών κόμβων.\\ Δηλαδή δεν θα μπορέσουν να πάρουν  σχεδόν ποτέ χρώμα το οποίο να συμβαδίζει με τους κανόνες χρωματισμού.Η αποδοτικότητα του συγκεκριμένου αλγορίθμου είνα πάρα πολυ μικρή.
 																								
 	\pagebreak																								
 	\section*{\gr \textbf{Β. Άσκηση 2}}	
 	
 	\gr \large{Περιγραφή αλγορίθμου:}\\
 	
-	\gr \normalsize Σύμφωνα με τις διαφάνειες ο γρήγορος αλγόριθμος για χρωματισμό καταφέρνει μετά από $\log_{}^*{{\en n}}$ γύρους να περιορίσει τον αριθμό των χρωμάτων από {\en x} σε 6.Βασιζόμενοι στον παραπάνω αλγόριθμο και στο γεγονός ότι σε κάθε γύρο μειώνει τον αριθμό των χρωμάτων από {\en x} σε Ο($\log_{}{{\en x}}$) τότε μπορούμε να περιγράψουμε τον παρακάτω αλγόριθμο :
-	\\
-	Έστω ότι έχουμε 6 χρώματα (0,1,2,3,4,5).Άν ένας κόμβος έχει ένα από τα χρώματα 3,4,5 τότε εκτελούνται τα παρακάτω βήματα: Ξαναχρωματίζουμε τον συγκεκριμένο κόμβο με το χρώμα του γονέα του και αντίστοιχα μόλις γίνει αυτό ο γονέας επιλέγει ένα από τα χρώματα {0,1,2}.\\
-	Η διαδικασία επιλογής χρώματος του γονέα γίνεται με βάση το χρώμα που έχει ο δικός του γονέας.Οπότε έστω ότι επιλέγει το μικρότερο αποδεκτό χρώμα από τα {0,1,2} ώστε να διατηρηθεί η αρχή πυ λέει πως γειτονικοί κόμβοι δεν μπορούν να έχουν το ίδιο χρώμα.Δηλαδή π.χ άμα ο γονιός του είχε χρώμα 0 τότε αυτός θα χρωματιζόταν με 1.
-	\\
-	Σύμφωνα με αυτό το {\en loop} συνεχίζουμε σε κάθε γύρο μέχρι να καταλήξουμε σε έναν αποδεκτό χρωματισμό του δένδρου που θα περιλαμβάνει μόνο 3 χρώματα χωρίς την ύπαρξη {\en adjacent} κόμβων.
+	\gr \normalsize Σύμφωνα με τις διαφάνειες ο γρήγορος αλγόριθμος για χρωματισμό καταφέρνει μετά από $\log_{}^*{{\en n}}$ γύρους να περιορίσει τον αριθμό των χρωμάτων από {\en x} σε 6.Βασιζόμενοι στον παραπάνω αλγόριθμο και στο γεγονός ότι σε κάθε γύρο μειώνει τον αριθμό των χρωμάτων από {\en x} σε Ο($\log_{}{{\en x}}$) τότε μπορούμε να περιγράψουμε τον παρακάτω αλγόριθμο :\\ \\
+	Έστω ότι έχουμε 6 χρώματα (0,1,2,3,4,5).\\
+	Αρχικά ορίζουμε υπορουτίνα η οποία θα χρησιμοποιηθεί για να διατηρείται η αρχή του χρωματισμού των γειτονικών κόμβων.Δηλαδή ότι δεν πρέπει γειτονικοί κόμβοι να έχουν το ίδιο χρώμα.\\
+	Υπορουτίνα: 
+	\begin{enumerate}
+		\item Η ρίζα επιλέγει ένα χρώμα από τα {0,1,2}.
+		\item Κάθε κόμβος ξαναχρωματίζεται με το χρώμα που είχε ο γονιός του.
+	\end{enumerate}
+	 
+	Αλγόριθμος:\\
+	Κάθε κόμβος σε παράλληλο χρόνο:      
+	\begin{enumerate}
+		\item Τρέχει τον γρήγορο αλγόριθμο χρωματισμού μέχρι να φτάσει στα 6 χρώματα.
+		\item Για {\en x} =5,4,3:
+		\begin{enumerate}
+			\item Eκτελεί την υπορουτίνα που αναφέρθηκε παραπάνω.
+			\item Αν το χρώμα ενός κόμβου μετά την υπορουτίνα είναι 5 ή 4 ή 3 τότε επιλέγεται το μικρότερο και ελεύθερο νέο χρώμα από το {0,1,2} .
+		\end{enumerate} 
+	\end{enumerate}
+	Αυτό το {\en loop} συνεχίζεται μέχρι να καταλήξουμε σε έναν αποδεκτό χρωματισμό του δένδρου που θα περιλαμβάνει μόνο 3 χρώματα χωρίς την ύπαρξη {\en adjacent} κόμβων.\\ \\ \\
+	
+	Στην συνέχεια παρουσιάζεται μια πιθανη εκτέλεση του παραπάνω αλγορίθμου:\\ \\
+	
+	\begin{tikzpicture}[node distance={15mm}, thick, main/.style = {draw, circle}] 
+		\node[main] (1) {$0$};
+		\node[main] (2) [below left of=1] {$3$};	
+		\node[main] (3) [below right of=1] {$5$};
+		\node[main] (4) [below left of=2] {$1$};
+		\node[main] (5) [below right of=2] {$2$};
+		\node[main,xshift = 0.8cm] (6) [below left of=3] {$4$};
+		\node[main] (7) [below right of=3] {$1$};
+		\node[main] (8) [below right of=6] {$2$};
+		
+		\draw (1) -- (2);
+		\draw (1) -- (3);
+		\draw (2) -- (4);
+		\draw (2) -- (5); 
+		\draw (3) -- (6);
+		\draw (3) -- (7);
+		\draw (7) -- (8);
+	\end{tikzpicture}
+
+	\pagebreak
+	Μετά την υπορουτίνα:\\
+	\begin{tikzpicture}[node distance={15mm}, thick, main/.style = {draw, circle}] 
+		\node[main] (1) {$2$};
+		\node[main] (2) [below left of=1] {$0$};	
+		\node[main] (3) [below right of=1] {$0$};
+		\node[main] (4) [below left of=2] {$3$};
+		\node[main] (5) [below right of=2] {$3$};
+		\node[main,xshift = 0.8cm] (6) [below left of=3] {$5$};
+		\node[main] (7) [below right of=3] {$5$};
+		\node[main] (8) [below right of=6] {$1$};
+		
+		\draw (1) -- (2);
+		\draw (1) -- (3);
+		\draw (2) -- (4);
+		\draw (2) -- (5); 
+		\draw (3) -- (6);
+		\draw (3) -- (7);
+		\draw (7) -- (8);
+	\end{tikzpicture}
+
+	Μετά το βήμα 2 του {\en for loop}:\\
+	\begin{tikzpicture}[node distance={15mm}, thick, main/.style = {draw, circle}] 
+		\node[main] (1) {$2$};
+		\node[main] (2) [below left of=1] {$0$};	
+		\node[main] (3) [below right of=1] {$0$};
+		\node[main] (4) [below left of=2] {$1$};
+		\node[main] (5) [below right of=2] {$1$};
+		\node[main,xshift = 0.8cm] (6) [below left of=3] {$5$};
+		\node[main] (7) [below right of=3] {$5$};
+		\node[main] (8) [below right of=6] {$1$};
+		
+		\draw (1) -- (2);
+		\draw (1) -- (3);
+		\draw (2) -- (4);
+		\draw (2) -- (5); 
+		\draw (3) -- (6);
+		\draw (3) -- (7);
+		\draw (7) -- (8);
+	\end{tikzpicture}
+
+		Μετά την υπορουτίνα:\\
+	\begin{tikzpicture}[node distance={15mm}, thick, main/.style = {draw, circle}] 
+		\node[main] (1) {$1$};
+		\node[main] (2) [below left of=1] {$2$};	
+		\node[main] (3) [below right of=1] {$2$};
+		\node[main] (4) [below left of=2] {$0$};
+		\node[main] (5) [below right of=2] {$0$};
+		\node[main,xshift = 0.8cm] (6) [below left of=3] {$0$};
+		\node[main] (7) [below right of=3] {$0$};
+		\node[main] (8) [below right of=6] {$5$};
+		
+		\draw (1) -- (2);
+		\draw (1) -- (3);
+		\draw (2) -- (4);
+		\draw (2) -- (5); 
+		\draw (3) -- (6);
+		\draw (3) -- (7);
+		\draw (7) -- (8);
+	\end{tikzpicture}
+	
+	Μετά το βήμα 2 του {\en for loop}:\\
+	\begin{tikzpicture}[node distance={15mm}, thick, main/.style = {draw, circle}] 
+		\node[main] (1) {$0$};
+		\node[main] (2) [below left of=1] {$1$};	
+		\node[main] (3) [below right of=1] {$1$};
+		\node[main] (4) [below left of=2] {$2$};
+		\node[main] (5) [below right of=2] {$2$};
+		\node[main,xshift = 0.8cm] (6) [below left of=3] {$2$};
+		\node[main] (7) [below right of=3] {$2$};
+		\node[main] (8) [below right of=6] {$0$};
+		
+		\draw (1) -- (2);
+		\draw (1) -- (3);
+		\draw (2) -- (4);
+		\draw (2) -- (5); 
+		\draw (3) -- (6);
+		\draw (3) -- (7);
+		\draw (7) -- (8);
+	\end{tikzpicture}
+	
+	
+
 	
 	
 		
