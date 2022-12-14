@@ -48,27 +48,42 @@ to alg_2
     ]
 
     ask turtles with [decided = false and elected = true][
-
+      let flag 0
+      let neighbordegreelist []
       ask link-neighbors with [elected = true] [
-        let ndegree count link-neighbors
-        set temp ndegree
-        if (temp < degree)[
-          set decided true
-          set color green]
+        set neighbordegreelist lput degree neighbordegreelist ]
+
+      foreach neighbordegreelist [ x ->
+        if ( degree < x )[ask link-neighbors with [elected = true][ set decided true set color green set flag 1]]
+        if ( degree > x )[ask link-neighbors with [elected = true][ set decided false set color red  set flag 0 ]]
+        if (degree = x) [ ;;λύνουμε το πρόβλημα της επιλογής οταν και οι δύο κόμβοι έχουν τον ίδιο βαθμό συγκρίνοντας τα id τους.Αυτό που έχει το μεγαλύτερο επιλέγεται
+          let id who
+          ask link-neighbors with [ degree = x][
+             if(id > who)[set decided true set color green set flag 1 ]
+          ]
+      ]
+      ]
+      if (flag = 1)[
+            set decided false
+            set color red
+            set decided true]
+        ;if (temp < degree)[
+          ;set decided true
+         ; set color green]
         ;;;;ifelse (degree link-neighbors = degree turtles and label link-neighbors > label turtles)[
           ;;;;;;set decided true set color green]
          ;if (temp < degree) [
           ;ask turtles [
           ;set decided true
           ;set color green]
-        ]
-        ]
+        ;
       ;ask link-neighbors with [decided = true][
           ;ask turtles [
             ;set decided false
             ;set color red
             ;set decided true ]]
     ;]
+  ]
   ]
 end
 
