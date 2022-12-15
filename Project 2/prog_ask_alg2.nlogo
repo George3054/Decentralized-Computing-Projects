@@ -38,52 +38,41 @@ to alg_2
 
     ask turtles with [decided = false and elected = false] [
 
+      if (count link-neighbors = 0) [set elected true set color green set decided true]
       if(count link-neighbors != 0)[
         set elecProb (1 / (2 * degree))
         ifelse random-float 1 < elecProb [
           set elected true]
         [set elected false]
       ]
-      if (count link-neighbors = 0) [set decided true]
+
     ]
 
     ask turtles with [decided = false and elected = true][
       let flag 0
       let neighbordegreelist []
-      ask link-neighbors with [elected = true] [
+      ask link-neighbors [
         set neighbordegreelist lput degree neighbordegreelist ]
 
-      foreach neighbordegreelist [ x ->
-        if ( degree < x )[ask link-neighbors with [elected = true][ set decided true set color green set flag 1]]
-        if ( degree > x )[ask link-neighbors with [elected = true][ set decided false set color red  set flag 0 ]]
-        if (degree = x) [ ;;λύνουμε το πρόβλημα της επιλογής οταν και οι δύο κόμβοι έχουν τον ίδιο βαθμό συγκρίνοντας τα id τους.Αυτό που έχει το μεγαλύτερο επιλέγεται
+      foreach neighbordegreelist [ ?1 ->
+        if ( degree < ?1 )[ask link-neighbors with [degree = x][ set elected true set flag 1]]
+        if ( degree > ?1 )[ask link-neighbors with [degree = x][ set elected false ]]
+        if (degree = ?1) [ ;;λύνουμε το πρόβλημα της επιλογής οταν και οι δύο κόμβοι έχουν τον ίδιο βαθμό συγκρίνοντας τα id τους.Αυτό που έχει το μεγαλύτερο επιλέγεται
           let id who
-          ask link-neighbors with [ degree = x][
-             if(id > who)[set decided true set color green set flag 1 ]
+          ask link-neighbors with [ degree = ?1][
+             if(id > who)[set elected false]
           ]
       ]
+      if (flag = 1 and elected = true)[
+            set color green
+            set decided true
       ]
-      if (flag = 1)[
-            set decided false
+      ask link-neighbors with [decided = false][
             set color red
-            set decided true]
-        ;if (temp < degree)[
-          ;set decided true
-         ; set color green]
-        ;;;;ifelse (degree link-neighbors = degree turtles and label link-neighbors > label turtles)[
-          ;;;;;;set decided true set color green]
-         ;if (temp < degree) [
-          ;ask turtles [
-          ;set decided true
-          ;set color green]
-        ;
-      ;ask link-neighbors with [decided = true][
-          ;ask turtles [
-            ;set decided false
-            ;set color red
-            ;set decided true ]]
-    ;]
+        set decided true ]
   ]
+
+    ]
   ]
 end
 
@@ -133,7 +122,7 @@ number-of-nodes
 number-of-nodes
 0
 100
-12.0
+16.0
 1
 1
 NIL
@@ -182,7 +171,7 @@ number-of-links
 number-of-links
 0
 1000
-13.0
+19.0
 1
 1
 NIL
