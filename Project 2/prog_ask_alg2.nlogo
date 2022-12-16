@@ -2,7 +2,7 @@ turtles-own[
   degree
   decided ;;if they eventually enter the MIS true
   elected ;; εκλεγονται με μια πιθανοτητα
-
+  steps
 ]
 
 to setup
@@ -31,6 +31,7 @@ to alg_2
     set label who
     let com count link-neighbors
     set degree com
+    set steps 0
   ]
   display
   while [any? turtles with [decided = false]] [
@@ -38,14 +39,15 @@ to alg_2
 
     ask turtles with [decided = false and elected = false] [
 
-      if (count link-neighbors = 0) [set elected true set color green set decided true]
+
       if(count link-neighbors != 0)[
         set elecProb (1 / (2 * degree))
         ifelse random-float 1 < elecProb [
           set elected true]
         [set elected false]
       ]
-
+      if (count link-neighbors = 0) [set elected true set color green set decided true]
+      set steps (steps + 1)
     ]
 
     ask turtles with [decided = false and elected = true][
@@ -54,12 +56,12 @@ to alg_2
       ask link-neighbors [
         set neighbordegreelist lput degree neighbordegreelist ]
 
-      foreach neighbordegreelist [ ?1 ->
-        if ( degree < ?1 )[ask link-neighbors with [degree = x][ set elected true set flag 1]]
-        if ( degree > ?1 )[ask link-neighbors with [degree = x][ set elected false ]]
-        if (degree = ?1) [ ;;λύνουμε το πρόβλημα της επιλογής οταν και οι δύο κόμβοι έχουν τον ίδιο βαθμό συγκρίνοντας τα id τους.Αυτό που έχει το μεγαλύτερο επιλέγεται
+      foreach neighbordegreelist [ x ->
+        if ( degree < x )[ask link-neighbors with [degree = x][set elected true set flag 1]]
+        if ( degree > x )[ask link-neighbors with [degree = x][ set elected false ]]
+        if (degree = x) [ ;;λύνουμε το πρόβλημα της επιλογής οταν και οι δύο κόμβοι έχουν τον ίδιο βαθμό συγκρίνοντας τα id τους.Αυτό που έχει το μεγαλύτερο επιλέγεται
           let id who
-          ask link-neighbors with [ degree = ?1][
+          ask link-neighbors with [ degree = x][
              if(id > who)[set elected false]
           ]
       ]
@@ -122,7 +124,7 @@ number-of-nodes
 number-of-nodes
 0
 100
-16.0
+32.0
 1
 1
 NIL
@@ -171,11 +173,22 @@ number-of-links
 number-of-links
 0
 1000
-19.0
+134.0
 1
 1
 NIL
 HORIZONTAL
+
+MONITOR
+85
+281
+188
+326
+number of steps
+max [steps] of turtles
+17
+1
+11
 
 @#$#@#$#@
 ## WHAT IS IT?
