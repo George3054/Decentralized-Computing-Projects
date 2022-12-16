@@ -3,6 +3,7 @@ turtles-own[
   degree
   entered ;;if they eventually enter the MIS true
   elected ;; εκλεγονται με μια πιθανοτητα
+  steps
 ]
 
 to setup
@@ -13,6 +14,7 @@ to setup
     set size 1
     set entered false
     set elected false
+    set steps 0
   ]
 
   rand-layout
@@ -47,13 +49,14 @@ to alg_1
         [set elected false]
       ]
       if (count link-neighbors = 0) [set elected true]
+      set steps (steps + 1)
     ]
 
     ask turtles with [entered = false and elected = true][
 
       ask link-neighbors [
         if (elected = true)[
-          set entered false
+          ;set entered false
           set color red ;;This mean that the node is  NOT added to the MIS
           set entered true ;;in this line entered is used to stop the node from changing again(node not in the MIS,ONLY if its green)
         ]
@@ -160,7 +163,7 @@ number-of-links
 number-of-links
 0
 2000
-11.0
+12.0
 1
 1
 NIL
@@ -173,6 +176,17 @@ MONITOR
 259
 Max Degree(Δ)
 max [count link-neighbors] of turtles
+17
+1
+11
+
+MONITOR
+48
+281
+151
+326
+number of steps
+max [steps] of turtles
 17
 1
 11
