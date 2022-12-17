@@ -1,5 +1,5 @@
 turtles-own[
-  degree
+  maxdegree
   decided ;;if they eventually enter the MIS true
   elected ;; εκλεγονται με μια πιθανοτητα
   steps
@@ -27,6 +27,13 @@ to go
 end
 
 to alg_3
+  ask turtles [
+    set label who
+    set maxdegree max [count link-neighbors] of turtles
+    set steps 0
+  ]
+  display
+
 
 end
 
