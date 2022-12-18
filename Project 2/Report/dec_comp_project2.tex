@@ -97,30 +97,61 @@
 	\section*{\gr \textbf{Β.Θεωρητική Άσκηση 2}}
 	
 	\gr Για το πρωτόκολλο πληθυσμού που θα περιγραφτεί θα χρησιμοποιήσουμε έναν {\en adversarial scheduler} ο οποίος θα είναι {\en strongly fair}. Με αυτόν τον {\en scheduler} πρακτικά λαμβάνουμε υπόψη το χειρότερο σενάριο ενεργοποίησης των κόμβων({\en worst case}) παρόλο που πάντοτε θα καταλήγει σε κάποια τερματική κατάσταση από την οποία μπορεί να εξαχθεί κάποιο συμπέρασμα ανάλογα με το πρωτόκολλο που έχει επιλεχθεί.\\
-	Δηλαδή το {\en predicate}  θα είναι σταθερώς υπολογίσιμο αν το πρωτόκολλο πληθυσμού που θα περιγράψουμε, θα βρεθεί κάποια στιγμή σε μία τερματική διαμόρφωση. Στη δική μας περίπτωση άμα στο τέλος σύμφωνα με τους κανόνες που έχουμε θέσει μείνει μόνο ένας κόμβος με τιμή 1 τότε καταλήγουμε στο συμπέρασμα πως ξεκινήσαμε με άρτιο πλήθος από 1 στους αρχικούς κόμβους. 
+	Δηλαδή το {\en predicate}  θα είναι σταθερώς υπολογίσιμο αν το πρωτόκολλο πληθυσμού που θα περιγράψουμε, θα βρεθεί κάποια στιγμή σε μία τερματική διαμόρφωση. Στη δική μας περίπτωση άμα στο τέλος σύμφωνα με τους κανόνες που έχουμε θέσει καταλήξουμε σε πλειοψηφία άσσων ή μηδενικών τότε καταλήγουμε στο συμπέρασμα πως ξεκινήσαμε  είτε με άρτιο πλήθος από 1 στους αρχικούς κόμβους είτε με περιττό.\\ 
+	
+	Δηλαδή : \\
+	Άρτιο πλήθος αρχικών κόμβων με 1 $\Rightarrow$ Όλοι οι τελικοί κόμβοι είναι 1(είτε {\large 1} είτε {\scriptsize 1})\\
+	Περιττό πλήθος αρχικών κόμβων με 1 $\Rightarrow$ Όλοι οι τελικοί κόμβοι είναι 0(είτε {\large 0} είτε {\scriptsize 0}).\\ 
+	
+	Όπως βλέπουμε για να μπορέσουμε να ορίσουμε το συγκεκριμένο πρωτόκολλο πληθυσμού θα πρέπει να ορίσουμε να 4 καταστάσεις στις οποίες μπορούν να βρεθούν οι κόμβοι μέχρι να φτάσουν σε ομοφωνία. Αυτές είναι  : {\Large 1} , {\scriptsize 1} , {\Large 0} , {\scriptsize 0} . Οι κόμβοι αρχικά θεωρούμε πως μπορύν να βρίσκονται μόνο στις καταστάσεις {\Large 1} και {\Large 0}.\\
+	 Αφού ορίσαμε τις εισόδους προχωράμε στο σύνολο των κανόνων του πρωτοκόλλου(λειτουργούν ανά ζευγάρια κόμβων): \\ \\
+	 {\Large 0} , {\Large 1} $\rightarrow$ {\scriptsize 0} , {\scriptsize 0}\\
+	 {\Large 0} , {\scriptsize 1} $\rightarrow$ {\scriptsize 0} , {\scriptsize 0}\\
+	 {\Large 1} , {\scriptsize 0} $\rightarrow$ {\scriptsize 1} , {\scriptsize 1}\\
+	 {\scriptsize 0} , {\scriptsize 1} $\rightarrow$ {\scriptsize 1} , {\scriptsize 1}\\
+	 
+	 Συνεπώς με την χρήση των παραπάνω κανόνων και τον συνδυασμό τους θα καταλήγουμε παντα σε ομοφωνία. Στη περίπτωση του περιττού πλήθους άσσων πάντα θα υπάρχει ένας {\Large 1} ο οποίος πρακτικά μέσω του κανόνα 3 θα ρυθμίζει τη ύπαρξη και τη δημιουργία των υπόλοιπων άσσων. Κατά αντιστοιχία στη περίπτωση του άρτιου πλήθους άσσων θα υπάρχει πάντοτε ένα {\Large 0} το οποίο θα ρυθμίζει τη δημιουργία των υπόλοιπων μηδενικών που θα οδηγήσουν στη ομοφωνία.\\
+	 
+	 Όσον αφορά τη χρονική πολυπλοκότητα του πρωτοκόλλου αυτή είναι Ο({\en n}).
+	
 
 	\section*{\gr \textbf{Γ.Προγραμματιστική Άσκηση 1}}	
 	
 	\gr Παρακάτω παρατίθονται οι εικόνες που εξήχθησαν από τα διάφορα πειράματα που πραγματοποιήθηκαν αλλάζοντας τον αριθμό των κόμβων και των ακμών. Για 7{\en n} και 15{\en n} ακμές χρείαστηκε να μεγαλώσω το πλήθος των κόμβων έτσι ώστε να μπορούν να δημιουργηθούν όλες αυτές οι ακμές.\\
-	
-	\center{ \textbf{Αλγόριθμος 1,σελ 13(διαφάνειες)} } \gr
-	
-	
+	Ο συνολικό πλήθος των γύρων  δίνεται από το {\en monitor number of steps}.
+	Υπάρχει επίσης ένα {\en monitor} για να δείχνει ποιος είναι ο μέγιστος βαθμός(Δ) του γραφήματος κάθε φορά.\\
+	Τα παραδείγματα για τους διαφορετικούς αριθμούς των ακμών παρατίθονται παρακάτω:\\
 	
 	\begin{figure}[htbp!]
+	\center{ \textbf{Αλγόριθμος 1({\en A Randomized Synchronous Distributed Algorithm}),σελ 13(διαφάνειες)} } \\
 		\centering
-		\subfloat[\centering \en Random Example]{{\includegraphics[scale=0.4]{netlogo_images/alg1_baselinks.png} }}%
+		\subfloat[\centering \en Random Example]{{\includegraphics[scale=0.35]{alg1_baselinks.png} }}\\
 		\quad
-		%\subfloat[\centering \en 3n links(n=10)]{{\includegraphics[scale=0.4]{img/mockups/signup_screen.png} }}%
+		\subfloat[\centering \en 3n links(n=10)]{{\includegraphics[scale=0.35]{alg1_3n_links.png} }}\\
+		\quad
+		\subfloat[\centering \en 7n links(n=24)]{{\includegraphics[scale=0.35]{alg1_7n_links(24).png} }}
+		\quad
+		\subfloat[\centering \en 15n links(n=44)]{{\includegraphics[scale=0.33]{alg1_15n_links(44).png} }}
+	\end{figure}		
+				
+	\begin{figure}[htbp!]
+		\center{ \textbf{Αλγόριθμος 2({\en Luby’s MIS Distributed Algorithm}),σελ 17(διαφάνειες)} }
+		\centering
+		\subfloat[\centering \en Random Example]{{\includegraphics[scale=0.35]{alg2_base_randomlinks.png} }}\\
+		\qquad
+		\subfloat[\centering \en 3n links(n=10)]{{\includegraphics[scale=0.35]{alg2_3n_links.png} }}\\
+		\qquad
+		\subfloat[\centering \en 7n links(n=35)]{{\includegraphics[scale=0.35]{alg2_7n_links(35).png} }}\\
 		
-	%	\subfloat[\centering \en 7n links(n=10)]{{\includegraphics[scale=0.4]{img/mockups/user/user\_menu.png}}}%
-	\end{figure}
-			
-			
-			
-			
-			
-			
-			
+		
+	\end{figure}		
+	
+	\newpage
+	\begin{figure}[htbp!]
+		\centering
+	\subfloat[\centering \en 15n links(n=35)]{{\includegraphics[scale=0.33]{alg2_15n_links(35).png} }}	
+    \end{figure}
+		
+				
 			
 		\end{document}

@@ -2,7 +2,7 @@ turtles-own[
   maxdegree
   degree
   entered ;;if they eventually enter the MIS true
-  elected ;; εκλεγονται με μια πιθανοτητα
+  elected ;; elected with a probability
   steps
 ]
 
@@ -18,7 +18,6 @@ to setup
   ]
 
   rand-layout
-
   reset-ticks
 end
 
@@ -32,16 +31,14 @@ end
 to alg_1
     ask turtles [
     set label who
-    ;let com count link-neighbors
-    ;set degree com
-    set maxdegree max [count link-neighbors] of turtles
+    set maxdegree max [count link-neighbors] of turtles;max degree Δ
   ]
   display
   while [any? turtles with [entered = false]] [
     let elecProb 0
 
     ask turtles with [entered = false and elected = false] [
-
+      ;; computation of probability of election
       if(count link-neighbors != 0)[
         set elecProb (1 / maxdegree)
         ifelse random-float 1 < elecProb [
@@ -56,9 +53,8 @@ to alg_1
 
       ask link-neighbors [
         if (elected = true)[
-          ;set entered false
           set color red ;;This mean that the node is  NOT added to the MIS
-          set entered true ;;in this line entered is used to stop the node from changing again(node not in the MIS,ONLY if its green)
+          set entered true
         ]
       ]
 
@@ -68,6 +64,7 @@ to alg_1
   ]
 end
 
+;For the randomness of the nodes layout
 to rand-layout
    repeat 40[
     layout-spring turtles links 0.3 5 0.5
@@ -131,7 +128,7 @@ number-of-nodes
 number-of-nodes
 0
 100
-12.0
+13.0
 1
 1
 NIL
@@ -163,7 +160,7 @@ number-of-links
 number-of-links
 0
 2000
-12.0
+61.0
 1
 1
 NIL

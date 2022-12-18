@@ -1,7 +1,7 @@
 turtles-own[
   degree
   decided ;;if they eventually enter the MIS true
-  elected ;; εκλεγονται με μια πιθανοτητα
+  elected ;;nodes elected with a probability
   steps
 ]
 
@@ -39,7 +39,7 @@ to alg_2
 
     ask turtles with [decided = false and elected = false] [
 
-
+;; computation of probability of election
       if(count link-neighbors != 0)[
         set elecProb (1 / (2 * degree))
         ifelse random-float 1 < elecProb [
@@ -66,7 +66,7 @@ to alg_2
           ]
       ]
       if (flag = 1 and elected = true)[
-            set color green
+            set color green;
             set decided true
       ]
       ask link-neighbors with [decided = false][
@@ -114,17 +114,6 @@ GRAPHICS-WINDOW
 1
 ticks
 30.0
-
-MONITOR
-0
-0
-0
-0
-NIL
-NIL
-17
-1
-11
 
 SLIDER
 50
@@ -184,7 +173,7 @@ number-of-links
 number-of-links
 0
 1000
-245.0
+525.0
 1
 1
 NIL
@@ -195,6 +184,17 @@ MONITOR
 281
 188
 326
+number of steps
+max [steps] of turtles
+17
+1
+11
+
+MONITOR
+85
+349
+188
+394
 number of steps
 max [steps] of turtles
 17
