@@ -1,6 +1,7 @@
 turtles-own[
-  mdegree
-  decided ;;if they eventually enter the MIS true
+  maxdegree
+  degree
+  entered ;;if they eventually enter the MIS true
   elected ;; εκλεγονται με μια πιθανοτητα
   steps
 ]
@@ -11,8 +12,9 @@ to setup
   create-turtles number-of-nodes [
     set color blue
     set size 1
-    set decided false
+    set entered false
     set elected false
+    set steps 0
   ]
 
   rand-layout
@@ -21,20 +23,49 @@ to setup
 end
 
 to go
-  if not any? turtles [ stop ]
-  alg_3
+  ;;if not any? turtles [ stop ]
+  if not any? turtles with [elected = false] [ stop ]
+  alg_1
   tick
 end
 
-to alg_3
-  ask turtles [
+to alg_1
+    ask turtles [
     set label who
+    ;let com count link-neighbors
+    ;set degree com
     set maxdegree max [count link-neighbors] of turtles
-    set steps 0
   ]
   display
+  while [any? turtles with [entered = false]] [
+    let elecProb 0
 
+    ask turtles with [entered = false and elected = false] [
 
+      if(count link-neighbors != 0)[
+        set elecProb (1 / maxdegree)
+        ifelse random-float 1 < elecProb [
+          set elected true]
+        [set elected false]
+      ]
+      if (count link-neighbors = 0) [set elected true]
+      set steps (steps + 1)
+    ]
+
+    ask turtles with [entered = false and elected = true][
+
+      ask link-neighbors [
+        if (elected = true)[
+          ;set entered false
+          set color red ;;This mean that the node is  NOT added to the MIS
+          set entered true ;;in this line entered is used to stop the node from changing again(node not in the MIS,ONLY if its green)
+        ]
+      ]
+
+      set entered true
+        set color green ;;This mean that the node is added to the MIS
+    ]
+  ]
 end
 
 to rand-layout
@@ -48,37 +79,69 @@ to rand-layout
 end
 @#$#@#$#@
 GRAPHICS-WINDOW
-413
-20
-954
-562
+417
+38
+1020
+642
 -1
 -1
-13.0
+14.5122
 1
 10
 1
 1
 1
 0
-1
-1
+0
+0
 1
 -20
 20
 -20
 20
-0
-0
+1
+1
 1
 ticks
 30.0
 
 BUTTON
-84
-149
-147
-182
+59
+124
+142
+157
+NIL
+go
+T
+1
+T
+OBSERVER
+NIL
+NIL
+NIL
+NIL
+0
+
+SLIDER
+10
+40
+189
+73
+number-of-nodes
+number-of-nodes
+0
+100
+44.0
+1
+1
+NIL
+HORIZONTAL
+
+BUTTON
+62
+82
+139
+115
 NIL
 setup
 NIL
@@ -91,89 +154,85 @@ NIL
 NIL
 1
 
-BUTTON
-190
-149
-253
-182
-NIL
-go
-NIL
-1
-T
-OBSERVER
-NIL
-NIL
-NIL
-NIL
-1
-
 SLIDER
-83
-38
-255
-71
-number-of-nodes
-number-of-nodes
+12
+165
+191
+198
+number-of-links
+number-of-links
 0
-100
-50.0
+2000
+660.0
 1
 1
 NIL
 HORIZONTAL
 
-SLIDER
-85
-90
-257
-123
-number-of-links
-number-of-links
-0
-1000
-50.0
+MONITOR
+50
+214
+147
+259
+Max Degree(Δ)
+max [count link-neighbors] of turtles
+17
 1
+11
+
+MONITOR
+48
+281
+151
+326
+number of steps
+max [steps] of turtles
+17
 1
-NIL
-HORIZONTAL
+11
 
 @#$#@#$#@
 ## WHAT IS IT?
 
-(a general understanding of what the model is trying to show or explain)
+This example demonstrates how to make a network in NetLogo.  The network consists of a collection of nodes, some of which are connected by links.
 
-## HOW IT WORKS
-
-(what rules the agents use to create the overall behavior of the model)
-
-## HOW TO USE IT
-
-(how to use the model, including a description of each of the items in the Interface tab)
+This example doesn't do anything in particular with the nodes and links.  You can use it as the basis for your own model that actually does something with them.
 
 ## THINGS TO NOTICE
 
-(suggested things for the user to notice while running the model)
-
-## THINGS TO TRY
-
-(suggested things for the user to try to do (move sliders, switches, etc.) with the model)
+In this particular example, the links are undirected.  NetLogo supports directed links too, though.
 
 ## EXTENDING THE MODEL
 
-(suggested things to add or change in the Code tab to make the model more complicated, detailed, accurate, etc.)
+Try making it so you can drag the nodes around using the mouse.
+
+Use the turtle variable `label` to label the nodes and/or links with some information.
+
+Try calculating some statistics about the network that forms, for example the average degree.
+
+Try other rules for connecting nodes besides totally randomly.  For example, you could:
+
+- Connect every node to every other node.
+- Make sure each node has at least one link going in or out.
+- Only connect nodes that are spatially close to each other.
+- Make some nodes into "hubs" (with lots of links).
+
+And so on.
+
+Make two kinds of nodes, differentiated by color, then only allow links to connect two nodes that are different colors.  This makes the network "bipartite."  (You might position the two kinds of nodes in two straight lines.)
 
 ## NETLOGO FEATURES
 
-(interesting or unusual features of NetLogo that the model uses, particularly in the Code tab; or where workarounds were needed for missing features)
+Nodes and edges are both agents.  Nodes are turtles, edges are links.
 
 ## RELATED MODELS
 
-(models in the NetLogo Models Library and elsewhere which are of related interest)
+* Random Network Example
+* Fully Connected Network Example
+* Preferential Attachment
+* Small Worlds
 
-## CREDITS AND REFERENCES
-
-(a reference to the model's URL on the web if it has one, as well as any other necessary credits, citations, and links)
+<!-- 2004 -->
 @#$#@#$#@
 default
 true
@@ -367,22 +426,6 @@ Polygon -7500403 true true 135 105 90 60 45 45 75 105 135 135
 Polygon -7500403 true true 165 105 165 135 225 105 255 45 210 60
 Polygon -7500403 true true 135 90 120 45 150 15 180 45 165 90
 
-sheep
-false
-15
-Circle -1 true true 203 65 88
-Circle -1 true true 70 65 162
-Circle -1 true true 150 105 120
-Polygon -7500403 true false 218 120 240 165 255 165 278 120
-Circle -7500403 true false 214 72 67
-Rectangle -1 true true 164 223 179 298
-Polygon -1 true true 45 285 30 285 30 240 15 195 45 210
-Circle -1 true true 3 83 150
-Rectangle -1 true true 65 221 80 296
-Polygon -1 true true 195 285 210 285 210 240 240 210 195 210
-Polygon -7500403 true false 276 85 285 105 302 99 294 83
-Polygon -7500403 true false 219 85 210 105 193 99 201 83
-
 square
 false
 0
@@ -466,13 +509,6 @@ Line -7500403 true 216 40 79 269
 Line -7500403 true 40 84 269 221
 Line -7500403 true 40 216 269 79
 Line -7500403 true 84 40 221 269
-
-wolf
-false
-0
-Polygon -16777216 true false 253 133 245 131 245 133
-Polygon -7500403 true true 2 194 13 197 30 191 38 193 38 205 20 226 20 257 27 265 38 266 40 260 31 253 31 230 60 206 68 198 75 209 66 228 65 243 82 261 84 268 100 267 103 261 77 239 79 231 100 207 98 196 119 201 143 202 160 195 166 210 172 213 173 238 167 251 160 248 154 265 169 264 178 247 186 240 198 260 200 271 217 271 219 262 207 258 195 230 192 198 210 184 227 164 242 144 259 145 284 151 277 141 293 140 299 134 297 127 273 119 270 105
-Polygon -7500403 true true -1 195 14 180 36 166 40 153 53 140 82 131 134 133 159 126 188 115 227 108 236 102 238 98 268 86 269 92 281 87 269 103 269 113
 
 x
 false

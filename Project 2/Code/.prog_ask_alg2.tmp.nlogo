@@ -2,7 +2,7 @@ turtles-own[
   degree
   decided ;;if they eventually enter the MIS true
   elected ;; εκλεγονται με μια πιθανοτητα
-
+  steps
 ]
 
 to setup
@@ -31,6 +31,7 @@ to alg_2
     set label who
     let com count link-neighbors
     set degree com
+    set steps 0
   ]
   display
   while [any? turtles with [decided = false]] [
@@ -46,6 +47,7 @@ to alg_2
         [set elected false]
       ]
       if (count link-neighbors = 0) [set elected true set color green set decided true]
+      set steps (steps + 1)
     ]
 
     ask turtles with [decided = false and elected = true][
@@ -113,6 +115,17 @@ GRAPHICS-WINDOW
 ticks
 30.0
 
+MONITOR
+0
+0
+0
+0
+NIL
+NIL
+17
+1
+11
+
 SLIDER
 50
 58
@@ -122,7 +135,7 @@ number-of-nodes
 number-of-nodes
 0
 100
-32.0
+35.0
 1
 1
 NIL
@@ -171,11 +184,22 @@ number-of-links
 number-of-links
 0
 1000
-134.0
+245.0
 1
 1
 NIL
 HORIZONTAL
+
+MONITOR
+85
+281
+188
+326
+number of steps
+max [steps] of turtles
+17
+1
+11
 
 @#$#@#$#@
 ## WHAT IS IT?
