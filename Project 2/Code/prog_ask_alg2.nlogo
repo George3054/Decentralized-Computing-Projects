@@ -1,3 +1,5 @@
+;;Luby’s MIS Distributed Algorithm(page 17 of slides)
+
 turtles-own[
   degree
   decided ;;if they eventually enter the MIS true
@@ -124,7 +126,7 @@ number-of-nodes
 number-of-nodes
 0
 100
-35.0
+15.0
 1
 1
 NIL
@@ -173,7 +175,7 @@ number-of-links
 number-of-links
 0
 1000
-525.0
+32.0
 1
 1
 NIL

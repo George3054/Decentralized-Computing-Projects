@@ -1,3 +1,5 @@
+;;Randomized Synchronous Distributed Algorithm(page 13 of slides)
+
 turtles-own[
   maxdegree
   degree
@@ -160,7 +162,7 @@ number-of-links
 number-of-links
 0
 2000
-61.0
+30.0
 1
 1
 NIL
