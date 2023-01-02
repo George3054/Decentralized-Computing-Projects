@@ -16,12 +16,14 @@ to setup
   ;; make some green trees
   ask patches with [(random-float 100) < density]
     [ set pcolor green ]
+  paveroad
   ;; make a column of burning trees
   ask patches with [pxcor = min-pxcor]
     [ ignite ]
   ;; set tree counts
   set initial-trees count patches with [pcolor = green]
   set burned-trees 0
+
   reset-ticks
 end
 
@@ -83,6 +85,10 @@ end
 
 to killtmps
   ask turtles with [tmp = 1] [die]
+end
+
+to paveroad
+  ask patches with [pxcor = 0 and pycor <= 0] [set pcolor black]
 end
 
 
