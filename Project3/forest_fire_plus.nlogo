@@ -7,6 +7,7 @@ breed [fires fire]    ;; bright red turtles -- the leading edge of the fire
 breed [embers ember]  ;; turtles gradually fading from red to near black
 
 patches-own [attempts]
+turtles-own [tmp]
 
 to setup
   clear-all
@@ -27,10 +28,12 @@ to go
   if not any? turtles  ;; either fires or embers
     [ stop ]
   ask patches [set attempts 0]
+  blowfires
   ask fires
     [ ask near with [pcolor = green]
         [ maybeignite ]
       set breed embers ]
+  killtmps
   fade-embers
   tick
 end
@@ -59,6 +62,20 @@ end
 to maybeignite
   set attempts attempts + 1
   if attempts >= firefactor [ignite]
+end
+
+to blowfires
+  ask fires with [tmp = 0] [
+    foreach range (wind + 1) [i -> hatch-fires 1 [
+      set tmp 1
+      set heading 90
+      fd i
+    ]]
+  ]
+end
+
+to killtmps
+  ask turtles with [tmp = 1] [die]
 end
 
 
@@ -112,7 +129,7 @@ density
 density
 0.0
 99.0
-98.0
+40.0
 1.0
 1
 %
@@ -173,6 +190,21 @@ firefactor
 1
 8
 2.0
+1
+1
+NIL
+HORIZONTAL
+
+SLIDER
+13
+309
+185
+342
+wind
+wind
+0
+5
+1.0
 1
 1
 NIL
