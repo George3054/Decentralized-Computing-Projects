@@ -8,6 +8,7 @@ breed [embers ember]  ;; turtles gradually fading from red to near black
 
 patches-own [attempts]
 turtles-own [tmp]
+fires-own [p]
 
 to setup
   clear-all
@@ -30,9 +31,10 @@ to go
   ask patches [set attempts 0]
   blowfires
   ask fires
-    [ ask near with [pcolor = green]
-        [ maybeignite ]
-      set breed embers ]
+    [ if p < q [ask near with [pcolor = green]
+      [ maybeignite ]]
+      set breed embers
+      ]
   killtmps
   fade-embers
   tick
@@ -41,7 +43,9 @@ end
 ;; creates the fire turtles
 to ignite  ;; patch procedure
   sprout-fires 1
-    [ set color red ]
+    [ set color red
+    set p random-float 1
+  ]
   set pcolor black
   set burned-trees burned-trees + 1
 end
@@ -70,6 +74,7 @@ to blowfires
       set tmp 1
       set heading 90
       fd i
+      set p random-float 1
     ]]
   ]
 end
@@ -129,7 +134,7 @@ density
 density
 0.0
 99.0
-40.0
+89.0
 1.0
 1
 %
@@ -176,7 +181,7 @@ SWITCH
 223
 corners
 corners
-0
+1
 1
 -1000
 
@@ -189,7 +194,7 @@ firefactor
 firefactor
 1
 8
-2.0
+1.0
 1
 1
 NIL
@@ -204,8 +209,23 @@ wind
 wind
 0
 5
-1.0
+0.0
 1
+1
+NIL
+HORIZONTAL
+
+SLIDER
+10
+357
+182
+390
+q
+q
+0
+1
+0.7
+0.01
 1
 NIL
 HORIZONTAL
