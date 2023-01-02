@@ -8,7 +8,7 @@ breed [embers ember]  ;; turtles gradually fading from red to near black
 
 patches-own [attempts]
 turtles-own [tmp]
-fires-own [p]
+fires-own [p clk]
 
 to setup
   clear-all
@@ -33,7 +33,8 @@ to go
   ask fires
     [ if p < q [ask near with [pcolor = green]
       [ maybeignite ]]
-      set breed embers
+      set clk clk - 1
+      if clk = 0 [set breed embers]
       ]
   killtmps
   fade-embers
@@ -45,6 +46,7 @@ to ignite  ;; patch procedure
   sprout-fires 1
     [ set color red
     set p random-float 1
+    set clk ifelse-value random-float 1 < phard [2] [1]
   ]
   set pcolor black
   set burned-trees burned-trees + 1
@@ -134,7 +136,7 @@ density
 density
 0.0
 99.0
-89.0
+76.0
 1.0
 1
 %
@@ -224,7 +226,22 @@ q
 q
 0
 1
-0.7
+0.5
+0.01
+1
+NIL
+HORIZONTAL
+
+SLIDER
+12
+407
+184
+440
+phard
+phard
+0
+1
+1.0
 0.01
 1
 NIL
