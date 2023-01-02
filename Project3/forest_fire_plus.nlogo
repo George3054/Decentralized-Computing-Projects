@@ -6,6 +6,8 @@ globals [
 breed [fires fire]    ;; bright red turtles -- the leading edge of the fire
 breed [embers ember]  ;; turtles gradually fading from red to near black
 
+patches-own [attempts]
+
 to setup
   clear-all
   set-default-shape turtles "square"
@@ -24,9 +26,10 @@ end
 to go
   if not any? turtles  ;; either fires or embers
     [ stop ]
+  ask patches [set attempts 0]
   ask fires
     [ ask near with [pcolor = green]
-        [ ignite ]
+        [ maybeignite ]
       set breed embers ]
   fade-embers
   tick
@@ -51,6 +54,11 @@ end
 
 to-report near
   report ifelse-value corners [neighbors] [neighbors4]
+end
+
+to maybeignite
+  set attempts attempts + 1
+  if attempts >= firefactor [ignite]
 end
 
 
@@ -104,7 +112,7 @@ density
 density
 0.0
 99.0
-75.0
+98.0
 1.0
 1
 %
@@ -145,15 +153,30 @@ NIL
 1
 
 SWITCH
-28
-228
-131
-261
+46
+190
+149
+223
 corners
 corners
-1
+0
 1
 -1000
+
+SLIDER
+8
+253
+180
+286
+firefactor
+firefactor
+1
+8
+2.0
+1
+1
+NIL
+HORIZONTAL
 
 @#$#@#$#@
 ## WHAT IS IT?
