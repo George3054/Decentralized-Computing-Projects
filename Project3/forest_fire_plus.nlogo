@@ -1,6 +1,7 @@
 globals [
   initial-trees   ;; how many trees (green patches) we started with
   burned-trees    ;; how many have burned so far
+
 ]
 
 breed [fires fire]    ;; bright red turtles -- the leading edge of the fire
@@ -11,23 +12,24 @@ turtles-own [tmp]
 fires-own [p clk]
 
 to setup
-  clear-all
+  ;;clear-all
+  ask turtles [die]
+  ask patches [set pcolor black]
   set-default-shape turtles "square"
   ;; make some green trees
   ask patches with [(random-float 100) < density]
     [ set pcolor green ]
-  paveroad
+  if  farmerroad [
+    paveroad]
   ;; make a column of burning trees
   ask patches with [pxcor = min-pxcor]
     [ ignite ]
   ;; set tree counts
   set initial-trees count patches with [pcolor = green]
   set burned-trees 0
-
-  reset-ticks
 end
 
-to go
+to togo
   if not any? turtles  ;; either fires or embers
     [ stop ]
   ask patches [set attempts 0]
@@ -40,6 +42,10 @@ to go
       ]
   killtmps
   fade-embers
+end
+
+to go
+  togo
   tick
 end
 
@@ -57,10 +63,10 @@ end
 ;; achieve fading color effect for the fire as it burns
 to fade-embers
   ask embers
-    [ set color color - 0.3  ;; make red darker
+    [ set color color - 0.3
       if color < red - 3.5     ;; are we almost at black?
-        [ set pcolor color
-          die ] ]
+        [ die
+           ] ]
 end
 
 to-report near
@@ -89,6 +95,13 @@ end
 
 to paveroad
   ask patches with [pxcor = 0 and pycor <= 0] [set pcolor black]
+end
+
+to gohard
+  set density (density + 1)
+  setup
+  foreach range 1000 [togo]
+  tick
 end
 
 
@@ -142,7 +155,7 @@ density
 density
 0.0
 99.0
-76.0
+65.0
 1.0
 1
 %
@@ -232,7 +245,7 @@ q
 q
 0
 1
-0.5
+1.0
 0.01
 1
 NIL
@@ -247,11 +260,57 @@ phard
 phard
 0
 1
-1.0
+0.0
 0.01
 1
 NIL
 HORIZONTAL
+
+PLOT
+813
+141
+1013
+291
+plot 1
+NIL
+NIL
+0.0
+10.0
+0.0
+10.0
+true
+false
+"" ""
+PENS
+"pen-0" 1.0 0 -8053223 true "" "plot burned-trees"
+
+BUTTON
+93
+539
+164
+572
+NIL
+gohard
+T
+1
+T
+OBSERVER
+NIL
+NIL
+NIL
+NIL
+1
+
+SWITCH
+26
+454
+144
+487
+farmerroad
+farmerroad
+1
+1
+-1000
 
 @#$#@#$#@
 ## WHAT IS IT?

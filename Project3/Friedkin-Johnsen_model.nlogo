@@ -1,4 +1,3 @@
-
 turtles-own [privatex privatey publicx publicy wii ]
 
 
@@ -125,20 +124,20 @@ NIL
 1
 
 CHOOSER
-31
-136
-169
-181
+187
+120
+325
+165
 strategy
 strategy
 1 2 3 4
-2
+3
 
 SLIDER
-35
-215
-207
-248
+172
+202
+344
+235
 n
 n
 0
