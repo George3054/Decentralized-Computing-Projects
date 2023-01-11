@@ -8,6 +8,7 @@
 \usepackage{fancyhdr}
 \usepackage{amsmath}
 \pagestyle{plain}
+\setlength{\intextsep}{5mm}
 %\fancyhf{}
 %\fancyhead[R]{\leftmark \gr ΛΕΚΚΑΣ ΓΕΩΡΓΙΟΣ ΑΜ:1067430 , ΠΑΠΑΝΙΚΟΛΑΟΥ ΠΑΝΑΓΙΩΤΗΣ ΑΜ:1067431 }
 %\fancyhead[LO]{\rightmark }
@@ -93,25 +94,32 @@
 	
 	Τα κουμπιά που χρησιμοποιούμε είναι τα : {\en strategy}(Οι 4 περιπτώσεις) , {\en n} (Αριθμός Κόμβων).\\
 	
-		
-		\textbf{Περίπτωση 1} : Όλοι οι κόμβοι συγκλίνουν στο μέσο όρο τους. \\ \\ 
-		\centering{\includegraphics[scale=0.40]{pics/Friedkin-Johnsen_model view.png} } 
-		
+		\begin{center}
+		\textbf{Περίπτωση 1} : Όλοι οι κόμβοι συγκλίνουν στο μέσο όρο τους.  
+		\begin{figure}[h]
+			\centering \includegraphics[scale=0.40]{pics/Friedkin-Johnsen_model view.png}  
+		\end{figure}
 		\pagebreak
 		
 		\textbf{Περίπτωση 2} : Όλοι οι κόμβοι παραμένουν στις αρχικές τους θέσεις.
-		\vspace{3ex} 
-		{\includegraphics[scale=0.40]{pics/Friedkin-Johnsen_model view2.png} } 
+		 \begin{figure}[h] 
+		 	\centering \includegraphics[scale=0.40]{pics/Friedkin-Johnsen_model view2.png} 
+	 	 \end{figure}
 		
 		\textbf{Περίπτωση 3} : Οι κόμβοι που δεν επιμένουν στην αποψή τους αρχικά συγκλίνουν στο μέσο όρο όλων των κόμβων και σταδιακά μετακινούνται προς την άποψη του κόμβου που επιμένει. 
-		\vspace{3ex}  
-		{\includegraphics[scale=0.40]{pics/Friedkin-Johnsen_model view3.png} }
-		
-		\textbf{Περίπτωση 4} : Κάθε κόμβος συγκλίνει σε διαφορετικό σημείο.Κόμβοι με μεγάλο θ συγκλίνουν κοντά στην αρχική τους θέση ενώ κόμβοι με μικρό θ συγκλίνουν προς το μέσο όρο των κόμβων.
-		\vspace{3ex}  
-		\centering{\includegraphics[scale=0.40]{pics/Friedkin-Johnsen_model view4.png} }
-		
+		\begin{figure}[h]
+		 \centering \includegraphics[scale=0.40]{pics/Friedkin-Johnsen_model view3.png} 
+		\end{figure}
+	
 		\pagebreak
+	
+		\textbf{Περίπτωση 4} : Κάθε κόμβος συγκλίνει σε διαφορετικό σημείο.Κόμβοι με μεγάλο θ συγκλίνουν κοντά στην αρχική τους θέση ενώ κόμβοι με μικρό θ συγκλίνουν προς το μέσο όρο των κόμβων.
+		 \begin{figure}[h]
+		\centering \includegraphics[scale=0.40]{pics/Friedkin-Johnsen_model view4.png} 
+		\end{figure}
+		\end{center}
+		
+		
 		
 	\section*{\gr \textbf{E.Προγραμματιστική Άσκηση 2}}
 	
