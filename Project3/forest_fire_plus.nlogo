@@ -109,10 +109,10 @@ end
 ; See Info tab for full copyright and license.
 @#$#@#$#@
 GRAPHICS-WINDOW
-200
-10
-710
-521
+267
+20
+777
+531
 -1
 -1
 2.0
@@ -155,7 +155,7 @@ density
 density
 0.0
 99.0
-65.0
+70.0
 1.0
 1
 %
@@ -196,10 +196,10 @@ NIL
 1
 
 SWITCH
-46
-190
-149
-223
+37
+225
+140
+258
 corners
 corners
 1
@@ -207,10 +207,10 @@ corners
 -1000
 
 SLIDER
-8
-253
-180
-286
+34
+299
+206
+332
 firefactor
 firefactor
 1
@@ -222,10 +222,10 @@ NIL
 HORIZONTAL
 
 SLIDER
-13
-309
-185
-342
+33
+361
+205
+394
 wind
 wind
 0
@@ -237,12 +237,27 @@ NIL
 HORIZONTAL
 
 SLIDER
-10
-357
-182
-390
+32
+430
+204
+463
 q
 q
+0
+1
+0.4
+0.01
+1
+NIL
+HORIZONTAL
+
+SLIDER
+31
+499
+203
+532
+phard
+phard
 0
 1
 1.0
@@ -251,27 +266,12 @@ q
 NIL
 HORIZONTAL
 
-SLIDER
-12
-407
-184
-440
-phard
-phard
-0
-1
-0.0
-0.01
-1
-NIL
-HORIZONTAL
-
 PLOT
-813
-141
-1013
-291
-plot 1
+314
+565
+514
+715
+Critical chance
 NIL
 NIL
 0.0
@@ -285,10 +285,10 @@ PENS
 "pen-0" 1.0 0 -8053223 true "" "plot burned-trees"
 
 BUTTON
-93
-539
-164
-572
+139
+621
+210
+654
 NIL
 gohard
 T
@@ -302,15 +302,112 @@ NIL
 1
 
 SWITCH
-26
-454
-144
-487
+29
+558
+147
+591
 farmerroad
 farmerroad
 1
 1
 -1000
+
+BUTTON
+21
+621
+110
+654
+NIL
+reset-ticks
+NIL
+1
+T
+OBSERVER
+NIL
+NIL
+NIL
+NIL
+1
+
+TEXTBOX
+39
+206
+189
+225
+Moore(ON)
+12
+0.0
+1
+
+TEXTBOX
+37
+268
+187
+298
+Number of neighborimg trees burned:
+12
+0.0
+1
+
+TEXTBOX
+34
+343
+184
+361
+Wind:
+12
+0.0
+1
+
+TEXTBOX
+33
+398
+183
+428
+chance of neighboring tree burning:
+12
+0.0
+1
+
+TEXTBOX
+33
+467
+183
+497
+chance tree to be slow burning:
+12
+0.0
+1
+
+TEXTBOX
+32
+539
+182
+557
+Farmerroad
+12
+0.0
+1
+
+TEXTBOX
+8
+17
+158
+35
+Tree density:
+12
+0.0
+1
+
+TEXTBOX
+316
+544
+466
+562
+Plot for critical chance:
+12
+0.0
+1
 
 @#$#@#$#@
 ## WHAT IS IT?

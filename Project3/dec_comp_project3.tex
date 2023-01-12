@@ -9,9 +9,6 @@
 \usepackage{amsmath}
 \pagestyle{plain}
 \setlength{\intextsep}{5mm}
-%\fancyhf{}
-%\fancyhead[R]{\leftmark \gr ΛΕΚΚΑΣ ΓΕΩΡΓΙΟΣ ΑΜ:1067430 , ΠΑΠΑΝΙΚΟΛΑΟΥ ΠΑΝΑΓΙΩΤΗΣ ΑΜ:1067431 }
-%\fancyhead[LO]{\rightmark }
 \fancypagestyle{plain}{}
 \usepackage{graphicx}
 \usepackage{amssymb}
@@ -70,9 +67,21 @@
 		\end{tikzpicture} \\ \\
 	Όσον αφορά τη συνεκτικότητα του γραφηματος, το γράφημα είναι \textbf{ασθενώς συνεκτικό} καθώς δεν υπάρχει διαδρομή από τη κορυφή {\en x1} στη κορυφή {\en x2}. Για να ήταν ισχυρά συνεκτικό θα έπρεπε να υπήρχε διαδρομή από και προς όλες τις κορυφές του γραφήματος. \\ \\
 	
-	\textbf{4}. Ο αλγόριθμος ως συνάρτηση των αρχικών τιμών των παικτών συγκλίνει κάθε φορά στο {\en x1}.
+	\pagebreak
 	
-	\pagebreak 
+	\textbf{4}. Ο αλγόριθμος ως συνάρτηση των αρχικών τιμών των παικτών \textbf{συγκλίνει κάθε φορά στο {\en x1}}.\\
+	
+	Αυτό ισχύει διότι:\\
+	
+	 \unboldmath{$\begin{bmatrix} x1 \\ x2 \end{bmatrix}$ = $x1 * \begin{bmatrix} 1 \\ 1 \end{bmatrix}  + (x2 - x1) * \begin{bmatrix} 0 \\ 1 \end{bmatrix}$} , όπου {\en v1} = $\begin{bmatrix} 1 \\ 1 \end{bmatrix}$ και {\en v2} = $\begin{bmatrix} 0 \\ 1 \end{bmatrix}$ τα ιδιοδιανύσματα από τα προηγούμενα \\ \\ ερωτήματα.\\
+	 
+	 Παίρνοντας το $\lim_{n \to \infty} A^{n} * \begin{bmatrix} x1 \\ x2 \end{bmatrix}$ έχουμε : \\
+	 
+	 $ A^{n} * \begin{bmatrix} x1 \\ x2 \end{bmatrix}$ = $ A^{n}*x1*v1 + A^{n}*(x2 - x1)*v2 = \lambda 1^{n}*x1*v1 + \lambda 2^{n}*(x2-x1)*v2$   (1) \\ \\, όπου $\lambda 1 = 1$ και $\lambda 2 = 1-\alpha$ \\ 
+	 
+	 Έχουμε ότι : $|1-\alpha| < 1$
+	
+ 
 	\section*{\gr \textbf{Β.Θεωρητική Άσκηση 2}}
 	
 	\begin{enumerate}
