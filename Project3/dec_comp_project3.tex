@@ -79,7 +79,8 @@
 	 
 	 $ A^{n} * \begin{bmatrix} x1 \\ x2 \end{bmatrix}$ = $ A^{n}*x1*v1 + A^{n}*(x2 - x1)*v2 = \lambda 1^{n}*x1*v1 + \lambda 2^{n}*(x2-x1)*v2$   (1) \\ \\, όπου $\lambda 1 = 1$ και $\lambda 2 = 1-\alpha$ \\ 
 	 
-	 Έχουμε ότι : $|1-\alpha| < 1$
+	 Έχουμε ότι : $|1-\alpha| < 1$ οπότε $\lim_{n \to \infty} (1-\alpha)^n = 0$ και  $\lim_{n \to \infty} \lambda1^n = 1$.\\
+	 Συνεπώς από την (1) $\Longrightarrow$ $\lim_{n \to \infty} (x1 * v1) = \begin{bmatrix} x1 \\ x1 \end{bmatrix}$
 	
  
 	\section*{\gr \textbf{Β.Θεωρητική Άσκηση 2}}
@@ -132,5 +133,49 @@
 		
 	\section*{\gr \textbf{E.Προγραμματιστική Άσκηση 2}}
 	
+	Ο πειραματικός υπολογισμός της κρίσιμης πιθανότητας πραγματοποιήθηκε αξιοποιώντας το {\en plot Critical chance} που δημιουργήθηκε. Τα αποτελέσματα που εξάχθηκαν για τη κρίσιμη πιθανότητα σε κάθε ερώτημα είναι τα εξής: \\
 	
+	\textbf{Ερώτημα 1:}
+	\begin{itemize}
+		\item Απλή γειτονιά {\en Moore }: κρίσιμη πιθανότητα στο 39\% {\en tree density}.
+	\end{itemize}
+	 
+	 \textbf{Ερώτημα 2:}
+	 \begin{itemize}
+	 \item Απλή γειτονιά {\en Moore }: κρίσιμη πιθανότητα στο 43\% {\en tree density}. 
+	 \item Γειτονιά {\en Moore }με τρία τουλάχιστον δένδρα να καίγονται: Δεν παρατηρούμε κάποια ιδιαίτερη συμπεριφορά. Κρίσιμη πιθανότητα στο 94\% {\en tree density}.
+	 \item Γειτονιά {\en Moore }με τρία τουλάχιστον δένδρα να καίγονται: Δεν καίγεται κανένα δένδρο μέχρι το {\en tree density} φτάσει στο 95\% . 
+	 \end{itemize}
+ 
+ 	\textbf{Ερώτημα 3:}
+ 	\begin{itemize}
+ 		\item Για {\en wind = 1}: κρίσιμη πιθανότητα στο 38\% {\en tree density}. 
+ 		\item Για {\en wind = 2}: κρίσιμη πιθανότητα στο 27\% {\en tree density}. 
+ 	\end{itemize}
+ 
+ 	\textbf{Ερώτημα 4:}
+ 	\begin{itemize}
+ 		\item Για {\en q = 60\%}: κρίσιμη πιθανότητα στο 71\% {\en tree density}. 
+ 		\item Για {\en q = 90\%}: κρίσιμη πιθανότητα στο 62\% {\en tree density}. 
+ 	\end{itemize}
+ 
+ 	\textbf{Ερώτημα 5:}
+ 	\begin{itemize}
+ 		\item Για {\en q = 60\%} και {\en phard = 50\%}: κρίσιμη πιθανότητα στο 68\% {\en tree density}. 
+ 		\item Για {\en q = 60\%} και {\en phard = 100\%}: κρίσιμη πιθανότητα στο 65\% {\en tree density}. 
+ 		\item Για {\en q = 90\%} και {\en phard = 50\%}: κρίσιμη πιθανότητα στο 62\% {\en tree density}. 
+ 		\item Για {\en q = 90\%} και {\en phard = 100\%}: κρίσιμη πιθανότητα στο 61\% {\en tree density}.
+ 	\end{itemize}
+ 
+ 	\textbf{Ερώτημα 6:}
+ 	\begin{itemize}
+ 		\item Για {\en wind = 0}: κρίσιμη πιθανότητα στο 61\% {\en tree density}. 
+ 		\item Για {\en wind = 1}: κρίσιμη πιθανότητα στο 42\% {\en tree density}. 
+ 		\item Για {\en wind = 2}: κρίσιμη πιθανότητα στο 42\% {\en tree density}.Εδώ το αποτέλεσμα είναι ίδιο με τη παραπάνω περίπτωση διότι ο αγροτικός δρόμος είναι σαν μην υπάρχει λόγω ανέμου.
+ 	\end{itemize}
+ 
+	\textbf{Ερώτημα 1:}
+	\begin{itemize}
+	\item {\en Moore = ON} , {\en wind = 2} , {\en q = 0.5} , {\en phard = 0.5} , {\en farmer road = ON}: κρίσιμη πιθανότητα στο 31\% {\en tree density}. \\ 
+ 	\end{itemize}
 \end{document}
