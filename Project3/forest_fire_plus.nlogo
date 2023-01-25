@@ -69,15 +69,18 @@ to fade-embers
            ] ]
 end
 
+;Moore neighborhood
 to-report near
   report ifelse-value corners [neighbors] [neighbors4]
 end
 
+;firefactor of neighboring trees
 to maybeignite
   set attempts attempts + 1
   if attempts >= firefactor [ignite]
 end
 
+;Wind implementation
 to blowfires
   ask fires with [tmp = 0] [
     foreach range (wind + 1) [i -> hatch-fires 1 [
@@ -93,10 +96,12 @@ to killtmps
   ask turtles with [tmp = 1] [die]
 end
 
+;Farmer road implementation
 to paveroad
   ask patches with [pxcor = 0 and pycor <= 0] [set pcolor black]
 end
 
+;Used  in order to take results by increasing the tree density by one gradually
 to gohard
   set density (density + 1)
   setup
@@ -104,9 +109,6 @@ to gohard
   tick
 end
 
-
-; Copyright 1997 Uri Wilensky.
-; See Info tab for full copyright and license.
 @#$#@#$#@
 GRAPHICS-WINDOW
 267

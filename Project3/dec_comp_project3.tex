@@ -43,7 +43,7 @@
 	
 	\gr Οι μεταβλητές του συστήματος είναι οι {\en x1 , x2} και οι οποίες σε μορφή διανύσματος γράφονται ως εξής: $\begin{bmatrix} x1 \\ x2 \end{bmatrix}$ .\\ 
 	
-	\textbf{1.} Οπότε το μητρώο Α είναι το εξής : A = $\begin{bmatrix} 1 & 0 \\ a & (1-a) \end{bmatrix}$ .\\ \\ Ένα μητρώο είναι στοχαστικό ως προς τις γραμμές όταν το άθροισμα των στοιχείων της κάθε γραμμής είναι ίσο με 1. Πράγματι στο μητρώο Α παρατηρούμε πως $1 + 0 = 1$ και $\alpha + (1- \alpha) = 0$ . \textbf{Επομένως το μητρώο Α είναι στοχαστικό ως προς τις γραμμές.} \\ \\
+	\textbf{1.} Οπότε το μητρώο Α είναι το εξής : A = $\begin{bmatrix} 1 & 0 \\ a & (1-a) \end{bmatrix}$ .\\ \\ Ένα μητρώο είναι στοχαστικό ως προς τις γραμμές όταν το άθροισμα των στοιχείων της κάθε γραμμής είναι ίσο με 1. Πράγματι στο μητρώο Α παρατηρούμε πως $1 + 0 = 1$ και $\alpha + (1- \alpha) = 1$ . \textbf{Επομένως το μητρώο Α είναι στοχαστικό ως προς τις γραμμές.} \\ \\
 	
 	\textbf{2}. Για να υπολογίσουμε τις ιδιοτιμές και τα ιδιοδιανύσματα του μητρώου Α θα χρησιμοποιήσουμε τους τύπους:  \boldmath {$\det(A - \lambda*I) = 0$} όπου $\lambda$ οι ιδιοτιμές και $I$ το ταυτοτικό μητρώο , \boldmath{$(A - \lambda*I)*x = 0$} . \\ \\
 	Συνεπώς έχουμε: \unboldmath{$(A - \lambda*I)$ = $\begin{bmatrix} 1 & 0 \\ a & (1-a) \end{bmatrix}$ - $\lambda*\begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix}$ = $\begin{bmatrix} 1-\lambda & 0 \\ a & (1-a-\lambda) \end{bmatrix}$ }. \\ \\
@@ -99,29 +99,31 @@
 	
 	Ο Μπομπ \textbf{δεν πρέπει} να δεχτεί το πρωτόκκολο της υπόθεσης.\\ \\ Καταλήγουμε στο συγκεκριμένο συμπέρασμα καθώς παρατηρούμε πως η Αλίκη μπορεί να στείλει το {\en s} στο {\en C{\scriptsize M}} μετά από χρόνο 2Δ και να πάρει το επιτυχώς το πράσινο νόμισμα, και ταυτόχρονα ο Μπομπ να μην μπορεί να στείλει το {\en s} στο {\en C{\scriptsize A}} καθώς ο χρόνος 2Δ θα έχει ήδη τελείωσει. \\
 	
+	\pagebreak
 	
 	\section*{\gr \textbf{Δ.Προγραμματιστική Άσκηση 1}}
 	
-	Τα κουμπιά που χρησιμοποιούμε είναι τα : {\en strategy}(Οι 4 περιπτώσεις) , {\en n} (Αριθμός Κόμβων).\\
 	
 		\begin{center}
 		\textbf{Περίπτωση 1} : Όλοι οι κόμβοι συγκλίνουν στο μέσο όρο τους.  
 		\begin{figure}[h]
 			\centering \includegraphics[scale=0.40]{pics/Friedkin-Johnsen_model view.png}  
 		\end{figure}
-		\pagebreak
+		%\pagebreak
 		
 		\textbf{Περίπτωση 2} : Όλοι οι κόμβοι παραμένουν στις αρχικές τους θέσεις.
 		 \begin{figure}[h] 
 		 	\centering \includegraphics[scale=0.40]{pics/Friedkin-Johnsen_model view2.png} 
 	 	 \end{figure}
 		
+		\pagebreak
+		
 		\textbf{Περίπτωση 3} : Οι κόμβοι που δεν επιμένουν στην αποψή τους αρχικά συγκλίνουν στο μέσο όρο όλων των κόμβων και σταδιακά μετακινούνται προς την άποψη του κόμβου που επιμένει. 
 		\begin{figure}[h]
 		 \centering \includegraphics[scale=0.40]{pics/Friedkin-Johnsen_model view3.png} 
 		\end{figure}
 	
-		\pagebreak
+		%\pagebreak
 	
 		\textbf{Περίπτωση 4} : Κάθε κόμβος συγκλίνει σε διαφορετικό σημείο.Κόμβοι με μεγάλο θ συγκλίνουν κοντά στην αρχική τους θέση ενώ κόμβοι με μικρό θ συγκλίνουν προς το μέσο όρο των κόμβων.
 		 \begin{figure}[h]
@@ -160,6 +162,8 @@
  			\centering \includegraphics[scale=0.35]{pics/Wind-burned trees plot.png}  
  		\end{figure}
  	\end{center}
+ 
+ \pagebreak
  	
  	\textbf{Ερώτημα 4:}
  	\begin{itemize}
@@ -167,12 +171,16 @@
  		\item Για {\en q = 90\%}: κρίσιμη πιθανότητα στο 62\% {\en tree density}. 
  	\end{itemize}
  
+ 
+ 
  	\begin{center}
  		\textbf{Γραφικό Αποτέλεσμα} :\\ Η γραφική παράσταση δημιουργήθηκε για {\en (q = 0\% , 0 burned trees) , (q = 25\% , 233 burned trees) , (q = 50\% , 1100 burned trees) , (q = 75\% , 42000 burned trees), (q = 100\% , 43300 burned trees) }.  
  		\begin{figure}[h]
- 			\centering \includegraphics[scale=0.285]{pics/q-burned trees plot.png}  
+ 			\centering \includegraphics[scale=0.35]{pics/q-burned trees plot.png}  
  		\end{figure}
  	\end{center}
+ 
+ \pagebreak
  
  	\textbf{Ερώτημα 5:}
  	\begin{itemize}
@@ -181,6 +189,8 @@
  		\item Για {\en q = 90\%} και {\en phard = 50\%}: κρίσιμη πιθανότητα στο 62\% {\en tree density}. 
  		\item Για {\en q = 90\%} και {\en phard = 100\%}: κρίσιμη πιθανότητα στο 61\% {\en tree density}.
  	\end{itemize}
+ 
+ 
  
  	\begin{center}
  		\textbf{Γραφικό Αποτέλεσμα} :\\ Η μπλε γραφική παράσταση δημιουργήθηκε για {\en (q = 60\%, phard = 0\% ,5050 burned trees), (q = 60\%, phard = 50\% , 38700 burned trees), (q = 60\%, phard = 100\% , 43200 burned trees)}.\\ 
